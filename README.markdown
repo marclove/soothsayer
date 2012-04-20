@@ -4,7 +4,7 @@ Soothsayer is a thin Ruby wrapper around Google's Prediction API.
 ## Setup
 Go to [Google's API Console](http://code.google.com/apis/console). Sign up and turn on both the "Google Cloud Storage" and "Prediction API" services. Before you can use the Prediction API, you'll have to turn on billing.
 
-Go to "API Access" section of the Google API Console and create a "Client ID for installed applications." You'll need the "Client ID" and "Client secret."
+Go to "API Access" section of the Google API Console and create an "Authorized API Access" key, "Client ID for installed applications." You'll need the "Client ID" and "Client secret."
 
 Download Google's Ruby API client gem:
     gem install google-api-client
@@ -25,6 +25,6 @@ This will create a file at <code>~/.google-api.yaml</code> which contains your O
 ## Usage
 To use Soothsayer, refer to [Google's documentation](https://developers.google.com/prediction/docs/reference/v1.5/reference).
 
-    SoothSayer::HostedModel.predict("sample.languageid", {:input => {:csvInstance => ["Como se llama?"]}})
-    SoothSayer::TrainedModel.list
-    SoothSayer::TrainedModel.update("my.trained.model.name", {:label => "my_label", :csvInstance => [col1, col2, col3]})
+    Soothsayer::HostedModel.predict("sample.languageid", {:input => {:csvInstance => ["Como se llama?"]}})
+    Soothsayer::TrainedModel.list
+    Soothsayer::TrainedModel.update("my.trained.model.name", {:label => "my_label", :csvInstance => [col1, col2, col3]})
