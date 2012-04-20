@@ -22,5 +22,5 @@ Gem::Specification.new do |s|
   # s.add_development_dependency "rspec"
   s.add_runtime_dependency "httparty"
   s.add_runtime_dependency "google-api-client"
-  s.add_runtime_dependency "multi_json"
+  s.add_runtime_dependency "json"
 end

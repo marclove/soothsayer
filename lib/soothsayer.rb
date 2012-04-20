@@ -3,7 +3,7 @@ require "soothsayer/hosted_model"
 require "soothsayer/trained_model"
 require 'httparty'
 require 'google/api_client'
-require 'multi_json'
+require 'json'
 
 module Soothsayer
   def self.credentials
