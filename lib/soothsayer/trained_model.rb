@@ -37,7 +37,7 @@ module Soothsayer
               "Content-Type" => "application/json"
             }
           }
-          options[:body] = MultiJson.dump(params) unless params.nil?
+          options[:body] = JSON.dump(params) unless params.nil?
           options
         end
     end
