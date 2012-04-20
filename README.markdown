@@ -7,12 +7,15 @@ Go to [Google's API Console](http://code.google.com/apis/console). Sign up and t
 Go to "API Access" section of the Google API Console and create an "Authorized API Access" key, "Client ID for installed applications." You'll need the "Client ID" and "Client secret."
 
 Download Google's Ruby API client gem:
+
     gem install google-api-client
 
 Now you need to download your OAuth keys
+
     google-api oauth-2-login --scope=https://www.googleapis.com/auth/prediction --client-id=<< YOUR CLIENT ID >> --client-secret=<< YOUR CLIENT SECRET >>
 
 This will create a file at <code>~/.google-api.yaml</code> which contains your OAuth keys. Move this file into your project and use it to configure Soothsayer:
+
     config_file = File.expand_path('path/to/google-api.yaml')
     config = open(config_file, 'r'){ |file| YAML.load(file.read) }
     Soothsayer.config do |c|
