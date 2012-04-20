@@ -19,10 +19,10 @@ This will create a file at <code>~/.google-api.yaml</code> which contains your O
     config_file = File.expand_path('path/to/google-api.yaml')
     config = open(config_file, 'r'){ |file| YAML.load(file.read) }
     Soothsayer.config do |c|
-      c.client_id = config.client_id
-      c.client_secret = config.client_secret
-      c.access_token = config.access_token
-      c.refresh_token = config.refresh_token
+      c.client_id     = config['client_id']
+      c.client_secret = config['client_secret']
+      c.access_token  = config['access_token']
+      c.refresh_token = config['refresh_token']
     end
 
 ## Usage
