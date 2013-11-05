@@ -2,31 +2,31 @@ module Soothsayer
   class TrainedModel
     class << self
       def list
-        API.get("/trainedmodels/list", opts)
+        API.get("/#{API.project_id}/trainedmodels/list", opts)
       end
 
       def get(model_id)
-        API.get("/trainedmodels/#{model_id}", opts)
+        API.get("/#{API.project_id}/trainedmodels/#{model_id}", opts)
       end
 
       def insert(params)
-        API.post("/trainedmodels", opts(params))
+        API.post("/#{API.project_id}/trainedmodels", opts(params))
       end
 
       def update(model_id, params)
-        API.put("/trainedmodels/#{model_id}", opts(params))
+        API.put("/#{API.project_id}/trainedmodels/#{model_id}", opts(params))
       end
 
       def delete(model_id)
-        API.delete("/trainedmodels/#{model_id}", opts)
+        API.delete("/#{API.project_id}/trainedmodels/#{model_id}", opts)
       end
 
       def predict(model_id, params)
-        API.post("/trainedmodels/#{model_id}/predict", opts(params))
+        API.post("/#{API.project_id}/trainedmodels/#{model_id}/predict", opts(params))
       end
 
       def analyze(model_id)
-        API.get("/trainedmodels/#{id}/analyze", opts)
+        API.get("/#{API.project_id}/trainedmodels/#{id}/analyze", opts)
       end
 
       private
