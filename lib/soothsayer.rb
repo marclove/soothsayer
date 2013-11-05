@@ -35,7 +35,6 @@ module Soothsayer
     include HTTParty
     format :json
     base_uri 'https://www.googleapis.com/prediction/v1.6/projects'
-    debug_output $stderr
 
     class << self
       attr_accessor :api_client, :project_id
