@@ -26,7 +26,7 @@ module Soothsayer
       end
 
       def analyze(model_id)
-        API.get("/#{API.project_id}/trainedmodels/#{id}/analyze", opts).parsed_response
+        API.get("/#{API.project_id}/trainedmodels/#{model_id}/analyze", opts).parsed_response
       end
 
       private
