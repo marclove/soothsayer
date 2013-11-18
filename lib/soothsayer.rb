@@ -34,10 +34,10 @@ module Soothsayer
   class API
     include HTTParty
     format :json
-    base_uri 'https://www.googleapis.com/prediction/v1.5'
+    base_uri 'https://www.googleapis.com/prediction/v1.6/projects'
 
     class << self
-      attr_accessor :api_client
+      attr_accessor :api_client, :project_id
 
       def oauth_token
         if api_client.nil?
