@@ -19,6 +19,9 @@ module Soothsayer
   #     c.client_secret = config.client_secret
   #     c.access_token = config.access_token
   #     c.refresh_token = config.refresh_token
+  #     c.project_id = "your project id"
+  #     c.application_name = "your application name"
+  #     c.application_version = "your application version"
   #   end
   #
   def self.config(config = Configuration.new)
@@ -27,10 +30,11 @@ module Soothsayer
   end
 
   class Configuration
-    attr_accessor :client_id, :client_secret, :access_token, :refresh_token
+    attr_accessor :client_id, :client_secret, :access_token, :refresh_token, :application_name, :application_version, :project_id
   end
 
   class OAuthTokenError < StandardError; end
+
   class API
     include HTTParty
     format :json
@@ -38,6 +42,11 @@ module Soothsayer
 
     class << self
       attr_accessor :api_client, :project_id
+      
+      def project_id
+        raise OAuthTokenError, 'Please configure Soothsayer first with Soothsayer.config.' if Soothsayer.credentials.nil?
+        Soothsayer.credentials.project_id
+      end
 
       def oauth_token
         if api_client.nil?
@@ -51,14 +60,18 @@ module Soothsayer
 
       def create_client
         raise OAuthTokenError, 'Please configure Soothsayer first with Soothsayer.config.' if Soothsayer.credentials.nil?
-        client = Google::APIClient.new(:authorization => :oauth_2)
+        client = Google::APIClient.new(
+          :authorization => :oauth_2,
+          :application_name => Soothsayer.credentials.application_name,
+          :application_version => Soothsayer.credentials.application_version
+        )
         unless client.authorization.nil?
           client.authorization.scope = nil
           client.authorization.client_id = Soothsayer.credentials.client_id
           client.authorization.client_secret = Soothsayer.credentials.client_secret
           client.authorization.access_token = Soothsayer.credentials.access_token
           client.authorization.refresh_token = Soothsayer.credentials.refresh_token
-          client.register_discovery_uri('discovery', 'v1.5', nil)
+          client.register_discovery_uri('prediction', 'v1.6', nil)
           self.api_client = client
         else
           raise OAuthTokenError
